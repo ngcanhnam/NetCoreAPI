@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Website Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PTPMQL_01</h1>
+  <p>NGuyễn Cảnh Nam-2121050710</p>
+</div>
+
+<div class="topnav">
+  <a href="https://i1-thethao.vnecdn.net/2024/01/25/2023-05-17T202041Z-1920734832-8769-7363-1706175885.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=QQmMllJLG2PT8J3oAjOHQQ">Ảnh 1</a>
+  <a href="https://i1-thethao.vnecdn.net/2024/01/25/thoa7520-jpg-1706158074-170615-1635-8117-1706158151.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=JaQHdb28uiRr01ixpnAbIA">HLV Troussier kêu gọi cầu thủ Việt Nam vững tin</a>
+  <a href="https://i1-thethao.vnecdn.net/2024/01/25/bilbao-8221-1706141331.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=EwUQA_-wnj15QKz9k_4bBQ">Barca bị loại ở Cup Nhà Vua</a>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>2121050710</h2>
+    <p>Nguyễn Cảnh Nam</p>
+  </div>
+  
+  <div class="column">
+    <h2>2121050710</h2>
+    <p>Nguyễn Cảnh Nam</p>
+  </div>
+  
+  <div class="column">
+    <h2>2121050710</h2>
+    <p>Nguyễn Cảnh Nam-2121050710</p>
+  </div>
+</div>
+
+</body>
+</html>
+
