@@ -1,15 +1,39 @@
-<h1>Dữ liệu gửi từ Controller gửi về là: @ViewBag.infoEmployee</h1>
+@model IEnumerable<MvcMovie.Models.Person>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 
-<form asp-action="Index">
-    <label>Nhập PersonID</label>
-    <input type="text"  name="PersonId">
-    <label>Nhập họ tên:</label>
-    <input type="text" name="FullName">
-    <label>Nhập địa chỉ:</label>
-    <input type="text"  name="Address">
-    <label>Nhập EmployeeId:</label>
-    <input type="text"  name="EmployeeId">
-    <label>Nhập tuổi:</label>
-    <input type="text"  name="Age">
-    <input type="submit" value="Gửi dữ liệu">
-</form>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Download">Download</a>
+</p>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Models => model.fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(models => model.Address)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Models) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item. Address)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
