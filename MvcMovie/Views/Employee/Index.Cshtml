@@ -1,37 +1,38 @@
-@model IEnumerable<MvcMovie.Models.Person>
-@using X.PagedList;
-@using X.PagedList.Mvc.Core;
+@model IEnumerable<MvcMovie.Models.Employee>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData ["Title"] = "Index";
 }
+
 <h1>Index</h1>
+
 <p>
-    <a asp-action="Create">Create New</a>
-    <a class="btn btn-success" asp-action="Download">Download</a>
+    <a asp-action="Create"> Create New</a>
 </p>
-
-<table class="table">
-
+<table class = "table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(Models => model.fullname)
+                @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(models => model.Address)
+                @Html.DisplayNameFor(model => model.Address)
             </th>
+            <th></th>
         </tr>
     </thead>
-
     <tbody>
-        @foreach (var item in Models) {
+        @foreach (var item in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fullname)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item. Address)
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id = "@item.EmployeeId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
                 </td>
             </tr>
         }

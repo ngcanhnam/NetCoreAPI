@@ -38,10 +38,12 @@ namespace MvcMovie.Controllers{
             return View();
         }
 
-        [HttpPost]
+         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonID, FullName, Address")] Person person){
-            if(ModelState.IsValid){
+        public async Task<IActionResult> Create([Bind("PersonID,FullName,Address")] Person person)
+        {
+            if (ModelState.IsValid)
+            {
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -49,34 +51,45 @@ namespace MvcMovie.Controllers{
             return View(person);
         }
 
-        public async Task<IActionResult> Edit(string id){
-            if(id == null || _context.Persons.Find(id) == null){
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null || _context.Persons == null)
+            {
                 return NotFound();
             }
+
             var person = await _context.Persons.FindAsync(id);
-            if(person == null){
+            if (person == null)
+            {
                 return NotFound();
             }
             return View(person);
         }
 
-        [HttpPost]
+         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonID, FullName, Address")] Person person){
-            if(id != person.PersonId){
+        public async Task<IActionResult> Edit(string id, [Bind("PersonID,FullName,Address")] Person person)
+        {
+            if (id != person.PersonId)
+            {
                 return NotFound();
             }
 
-            if(ModelState.IsValid){
-                try{
+            if (ModelState.IsValid)
+            {
+                try
+                {
                     _context.Update(person);
                     await _context.SaveChangesAsync();
                 }
-                catch(DbUpdateConcurrencyException){
-                    if(!PersonExists(person.PersonId)){
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PersonExists(person.PersonId))
+                    {
                         return NotFound();
                     }
-                    else{
+                    else
+                    {
                         throw;
                     }
                 }
@@ -84,33 +97,42 @@ namespace MvcMovie.Controllers{
             }
             return View(person);
         }
-        public async Task<IActionResult> Delete(string id){
-            if(id == null || _context.Persons == null){
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.Persons == null)
+            {
                 return NotFound();
             }
+
             var person = await _context.Persons
                 .FirstOrDefaultAsync(m => m.PersonId == id);
-            if(person == null){
+            if (person == null)
+            {
                 return NotFound();
             }
+
             return View(person);
         }
 
-        [HttpPost, ActionName("Delete")]
+
+
+         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id){
-            if(_context.Persons == null){
-                return Problem("Entity set 'ApplicationDbContext.Persons' is null.");
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Persons == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Person'  is null.");
             }
             var person = await _context.Persons.FindAsync(id);
-            if(person != null){
+            if (person != null)
+            {
                 _context.Persons.Remove(person);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool PersonExists(string id){
             return(_context.Persons?.Any(e => e.PersonId == id)).GetValueOrDefault();
         }

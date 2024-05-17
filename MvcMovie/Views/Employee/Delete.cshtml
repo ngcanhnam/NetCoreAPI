@@ -1,0 +1,30 @@
+@model MvcMovie.Models.Employee
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Delete</h1>
+<h3>Are u sure to delete this</h3>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class= "row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+
+        </dt>
+        <dd class ="col-sn-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class = "col-sn-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sn-10">
+            @Html.DisplayNameFor(model => model.Address)
+        </dd>
+    </dl>
+    <form -asp-action="Delete">
+        <input type ="hidden" asp-for ="EmployeeId"/>
+        <input type ="submit" value="Delete" class= "btn-btn danger" />
+        <a asp-action="Index">Back to List</a>
+        </form>
+</div>
