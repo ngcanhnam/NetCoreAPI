@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using MVCMovie.Models;
 
 namespace MvcMovie.Data
 {
@@ -8,5 +9,6 @@ namespace MvcMovie.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
         public DbSet<Person> Persons {get; set;}
         public DbSet<Employee> Employee {get; set;}
+        public  DbSet<Student> Student {get; set;}
     }
 }
