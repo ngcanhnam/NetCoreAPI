@@ -42,8 +42,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Net_Core_API/MvcMovie/Views/hethongphanphoi/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaGV0aG9uZ3BoYW5waG9pXGluZGV4LmNzaHRtbA==
+[D:/Net_Core_API/MvcMovie/Views/Hethongphanphoi/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGV0aG9uZ3BoYW5waG9pXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Net_Core_API/MvcMovie/Views/Hethongphanphoi/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGV0aG9uZ3BoYW5waG9pXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Net_Core_API/MvcMovie/Views/Hethongphanphoi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGV0aG9uZ3BoYW5waG9pXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Net_Core_API/MvcMovie/Views/Home/Index.cshtml]
@@ -80,6 +88,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Net_Core_API/MvcMovie/Views/Student/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Net_Core_API/MvcMovie/Views/Student/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Net_Core_API/MvcMovie/Views/Student/Details.cshtml]

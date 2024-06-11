@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra phòng trống</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00CCCC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #40E0D0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .form-container h1 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="datetime-local"],
+        .form-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-container input[type="submit"],
+        .form-container input[type="button"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #808080;
+            color: #fff;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover,
+        .form-container input[type="button"]:hover {
+            background-color: #696969;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group label, .form-group input {
+            width: 48%;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-buttons input {
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>KIỂM TRA PHÒNG TRỐNG VÀ CẬP NHẬP</h1>
+        <form>
+            <div class="form-group">
+                <label for="loaiphong">Loại phòng</label>
+                <select id="loaiphong" name="loaiphong">
+                    <option value="phongVIP">phòng VIP</option>
+                    <option value="phongthuong">phòng thường</option>
+                    <!-- Add other options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sophong">Số phòng</label>
+                <input type="text" id="sophong" name="sophong" value="35">
+            </div>
+            <label for="tinhtrang">Tình trạng</label>
+            <select id="tinhtrang" name="tinhtrang">
+                <option value="controng">Còn trống</option>
+                <option value="dadat">Đã dặt</option>
+            </select>
+
+            <label for="ngaygiovao">Ngày-giờ vào</label>
+            <input type="datetime-local" id="ngaygiovao" name="ngaygiovao">
+
+            <div class="form-buttons">
+                <input type="submit" value="Nhập mới">
+                <input type="button" value="In vé">
+                <input type="button" value="Kết thúc">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

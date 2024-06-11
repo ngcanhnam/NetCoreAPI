@@ -8,28 +8,75 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using System.Data;
+using MvcMovie.Migrations;
+using System.Security.Cryptography;
 
-namespace NetMVC.Controllers
-{
-    public class StudentController : Controller
-    {
+namespace MvcMovie.Controllers{
+    public class StudentController : Controller{
         private readonly ApplicationDbContext _context;
-
-        public StudentController(ApplicationDbContext context)
-        {
+        
+        public StudentController(ApplicationDbContext context){
             _context = context;
         }
-
-        // GET: Student
-        public async Task<IActionResult> Index()
-        {
-              return _context.Student != null ? 
-                          View(await _context.Student.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Student'  is null.");
+//GET Index
+        public async Task<IActionResult> Index(){
+            return _context.Student != null ?
+            View(await _context.Student.ToListAsync()) :
+            Problem("Entity set 'ApplicationDbContext.Person'  is null.");
         }
-
-        // GET: Student/Details/5
-        public async Task<IActionResult> Details(string id)
+//GET Create
+        public IActionResult Create(){
+            return View();
+        }
+//POST Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("StudentId, StudentName, Age, Address, Email")]Student student){
+            if(ModelState.IsValid){
+                _context.Add(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+//GET Edit
+        public async Task<IActionResult> Edit(string id){
+            if (id == null || _context.Student == null){
+                return NotFound();
+            }
+            var student = await _context.Student.FindAsync(id);
+            if(student == null){
+                return NotFound();
+            }
+            return View(student);
+        }
+//POST Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("StudentId, StudentName, Age, Address, Email")]Student student){
+            if (id != student.StudentId){
+                return NotFound();
+            }
+            if (ModelState.IsValid){
+                try{
+                    _context.Update(student);
+                    await _context.SaveChangesAsync();
+                }
+                catch(DbUpdateConcurrencyException){
+                    if(!StudentExists(student.StudentId)){
+                        return NotFound();
+                    }
+                    else{
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(student);
+            
+        }
+//GET Delete
+         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Student == null)
             {
@@ -45,39 +92,28 @@ namespace NetMVC.Controllers
 
             return View(student);
         }
-
-        // GET: Student/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Student/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+//POST Delete
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,Fullname,Address,Age,Email,Birthday,IsActive")] Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+        public async Task<IActionResult>DeleteConfirmed(string id){
+            if(_context.Student==null){
+                return Problem("Entity set 'ApplicationDbContext.Person'  is null.");
             }
-            return View(student);
+            var student = await _context.Student.FindAsync(id);
+            if (student != null){
+                _context.Student.Remove(student);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }  
+        private bool StudentExists(string id)
+        {
+          return (_context.Student?.Any(e => e.StudentId == id)).GetValueOrDefault();
         }
 
-        // GET: Student/Edit/5
-       public async Task<IActionResult> Edit(string id){
-        if( id == null || _context.Student == null){
-            return NotFound();
-        }
-        var student = await _context.Student.FindAsync(id);
-        if (student == null){
-            return NotFound();
-        }
-        return View(student);
-       }
+
     }
-}
+
+      
+ }
+    

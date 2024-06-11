@@ -1,8 +1,42 @@
-<h1> @ViewBag.HeThongPhanPhoi</h1>
-<form asp-action="Index">
-    <label>Nhập Mã HTPP</label>
-    <input type="text"  name="MaHTPP">
-    <label>Nhập Tên HTPP:</label>
-    <input type="text" name="TenHTPP">
-    <input type="submit" value="Gửi dữ liệu">
-</form>
+@model IEnumerable<MvcMovie.Models.Hethongphanphoi>
+
+@{
+    ViewData["Title"] ="Index";
+
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class ="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HTPPId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HTPPName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <td>
+                    @Html.DisplayFor(Modelitem => item.HTPPId)
+                </td>
+                <td>
+                    @Html.DisplayFor(Modelitem => item.HTPPName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.HTPPId"></a>
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>

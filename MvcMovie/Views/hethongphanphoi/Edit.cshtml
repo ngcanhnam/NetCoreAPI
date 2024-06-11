@@ -1,0 +1,35 @@
+@model MvcMovie.Models.Hethongphanphoi
+
+@{
+    ViewData["Tilte"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Hethongphanphoi</h4>
+
+<div class ="row">
+    <div class ="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class ="text-danger"></div>
+            <input type ="hidden" asp-for="HTPPId" />
+            <div class ="col-md-4">
+                <label asp-for="HTPPId" class ="control-label"></label>
+                <input asp-for="HTPPId" class ="form-control" />
+                <span asp-validation-for="HTPPId" class ="text-danger"></span>
+            </div>
+            <div class ="col-md-4">
+                <label asp-for="HTPPName" class ="control-label"></label>
+                <input asp-for="HTPPName" class ="form-control" />
+                <span asp-validation-for="HTPPName" class ="text-danger"></span>
+            </div> 
+            <div class ="form-group">
+                <input type ="submit" value="Save" class ="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to list</a> 
+</div>

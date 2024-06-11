@@ -1,11 +1,14 @@
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace MVCMovie.Models
-{
-    public class HeThongPhanPhoi
-    {
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace MvcMovie.Models{
+    [Table("Hethongphanphoi")]
+    public class Hethongphanphoi{
         [Key]
-        public string MaHTPP { get; set; }
-        public string TenHTPP { get; set; }
+        public required string HTPPId { get; set; }
+        public required string HTPPName { get; set; }
+
     }
 }
