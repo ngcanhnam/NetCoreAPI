@@ -37,33 +37,35 @@ namespace MvcMovie.Controllers{
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index)); 
       }
-      return View();
+      return View(hethongphanphoi);
     }
 //GET Edit
     public async Task<IActionResult> Edit(string id){
-        if(id == null || _context.Hethongphanphoi == null){
-            return NotFound();
+            if (id == null || _context.Hethongphanphoi == null){
+                return NotFound();
+            }
+            var hethongphanphoi = await _context.Hethongphanphoi.FindAsync(id);
+            if(hethongphanphoi == null){
+                return NotFound();
+            }
+            return View(hethongphanphoi);
         }
-        var hethongphanphoi = await _context.Hethongphanphoi.FindAsync(id);
-        if(hethongphanphoi == null){
-            return NotFound("");
-        }
-        return View();
-    }
 
 //POST Edit
-        public async Task<IActionResult> Edit(string id, [Bind("HTPPId, HTPPName")]Hethongphanphoi hethongphanphoi){
-            if ( id != hethongphanphoi.HTPPId){
+         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("HTPPID, HTPPName")]Hethongphanphoi hethongphanphoi){
+            if (id != hethongphanphoi.HTPPId){
                 return NotFound();
             }
             if (ModelState.IsValid){
                 try{
                     _context.Update(hethongphanphoi);
                     await _context.SaveChangesAsync();
-
+                    
                 }
                 catch(DbUpdateConcurrencyException){
-                    if(HethongphanphoiExists(hethongphanphoi.HTPPId)){
+                    if(!HethongphanphoiExists(hethongphanphoi.HTPPId)){
                         return NotFound();
                     }
                     else{
@@ -72,11 +74,45 @@ namespace MvcMovie.Controllers{
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(hethongphanphoi);
+            
         }
-        private bool HethongphanphoiExists(string id)
+           
+        //GET Delete
+         public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.Student == null)
+            {
+                return NotFound();
+            }
+
+            var hethongphanphoi = await _context.Hethongphanphoi
+                .FirstOrDefaultAsync(m => m.HTPPId == id);
+            if (hethongphanphoi == null)
+            {
+                return NotFound();
+            }
+
+            return View(hethongphanphoi);
+        }
+//POST Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult>DeleteConfirmed(string id){
+            if(_context.Hethongphanphoi==null){
+                return Problem("Entity set 'ApplicationDbContext.Person'  is null.");
+            }
+            var hethongphanphoi = await _context.Hethongphanphoi.FindAsync(id);
+            if (hethongphanphoi != null){
+                _context.Hethongphanphoi.Remove(hethongphanphoi);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }  
+          private bool HethongphanphoiExists(string id)
         {
           return (_context.Hethongphanphoi?.Any(e => e.HTPPId == id)).GetValueOrDefault();
         }
+      
     }
 }

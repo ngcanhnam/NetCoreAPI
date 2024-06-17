@@ -32,7 +32,8 @@
                     @Html.DisplayFor(Modelitem => item.HTPPName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.HTPPId"></a>
+                    <a asp-action="Edit" asp-route-id="@item.HTPPId">Edit</a>
+                    <a asp-action="Delete" asp-route-id ="@item.HTPPId">Delete</a>
                 </td>
 
             </tr>
