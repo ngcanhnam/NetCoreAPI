@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<NCN017>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("NCN017") ?? throw new InvalidOperationException("Connection string 'NCN017' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
